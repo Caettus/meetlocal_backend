@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meetlocal_backendAPI", "meetlocal_backendAPI\meetlocal_backendAPI.csproj", "{0816843C-0756-4E8D-8333-3F011DEAF5A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meetlocal_backend", "meetlocal_backend\meetlocal_backend.csproj", "{7F090BFB-FF15-4F26-8D92-1CC56F9753EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0816843C-0756-4E8D-8333-3F011DEAF5A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0816843C-0756-4E8D-8333-3F011DEAF5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0816843C-0756-4E8D-8333-3F011DEAF5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0816843C-0756-4E8D-8333-3F011DEAF5A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F090BFB-FF15-4F26-8D92-1CC56F9753EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F090BFB-FF15-4F26-8D92-1CC56F9753EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F090BFB-FF15-4F26-8D92-1CC56F9753EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F090BFB-FF15-4F26-8D92-1CC56F9753EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
