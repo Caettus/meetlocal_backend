@@ -1,4 +1,17 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Load your app settings and configuration
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .Build();
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -16,6 +29,10 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+
+// Register the configuration
+builder.Services.AddSingleton<IConfiguration>(configuration);
+
 
 var app = builder.Build();
 

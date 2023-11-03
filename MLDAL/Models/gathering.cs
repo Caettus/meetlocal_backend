@@ -13,7 +13,7 @@ public class gathering
     
     public string GatheringOrganiser { get; set; }
     
-    public string GatheringDateTime { get; set; }
+    public DateTime GatheringDateTime { get; set; }
     
     public string GatheringCategory { get; set; }
 }
