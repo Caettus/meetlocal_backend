@@ -3,6 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using MLDAL; // Add this line to import the AppDbContext class
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +36,8 @@ builder.Services.AddCors(options =>
 // Register the configuration
 builder.Services.AddSingleton<IConfiguration>(configuration);
 
+// Add the following line to register the AppDbContext service
+builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConnectionString")));
 
 var app = builder.Build();
 
