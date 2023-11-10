@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -44,13 +45,30 @@ public class gatheringController : ControllerBase
 
     // POST: api/gathering
     [HttpPost]
-    public async Task<ActionResult<gathering>> PostGathering(gathering gathering)
+    public async Task<ActionResult<gathering>> PostGathering(gathering model)
     {
-        _context.Gatherings.Add(gathering);
-        await _context.SaveChangesAsync();
+        try
+        {
+            // Combine date and time and parse to DateTime
+            model.GatheringDateTime = DateTime.SpecifyKind(
+                DateTime.ParseExact($"{model.GatheringDate} {model.GatheringTime}", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture),
+                DateTimeKind.Utc
+            );
 
-        return CreatedAtAction("GetGathering", new { id = gathering.GatheringId }, gathering);
+            _context.Gatherings.Add(model);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetGathering", new { id = model.GatheringId }, model);
+        }
+        catch (Exception ex)
+        {
+
+            // Return an error response
+            return StatusCode(500, $"Internal Server Error: {ex.Message}");
+        }
     }
+
+
 
     // PUT: api/gathering/5
     [HttpPut("{id}")]
