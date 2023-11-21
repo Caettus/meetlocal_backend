@@ -24,10 +24,19 @@ public class gatheringController : ControllerBase
 
     // GET: api/gathering
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<gathering>>> GetGatherings()
+    public async Task<ActionResult<IEnumerable<gathering>>> GetGatherings(string search = "")
     {
-        return await _context.Gatherings.ToListAsync();
+        var gatherings = _context.Gatherings.AsQueryable();
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            gatherings = gatherings.Where(g => g.GatheringName.Contains(search) || g.GatheringDescription.Contains(search));
+        }
+
+        return await gatherings.ToListAsync();
     }
+
+
 
     // GET: api/gathering/5
     [HttpGet("{id}")]
