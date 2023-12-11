@@ -1,10 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meetlocal_backendAPI", "meetlocal_backendAPI\meetlocal_backendAPI.csproj", "{0816843C-0756-4E8D-8333-3F011DEAF5A9}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "meetlocal_backendAPI", "meetlocal_backendAPI\meetlocal_backendAPI.csproj", "{0816843C-0756-4E8D-8333-3F011DEAF5A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meetlocal_backend", "meetlocal_backend\meetlocal_backend.csproj", "{7F090BFB-FF15-4F26-8D92-1CC56F9753EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "meetlocal_backend", "meetlocal_backend\meetlocal_backend.csproj", "{7F090BFB-FF15-4F26-8D92-1CC56F9753EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLDAL", "MLDAL\MLDAL.csproj", "{01D533E2-F29A-4A7A-8904-6D75ECB5BBF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLDAL", "MLDAL\MLDAL.csproj", "{01D533E2-F29A-4A7A-8904-6D75ECB5BBF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend.application", "backend.application\backend.application.csproj", "{696D6A79-908B-4A08-A097-70FAABDF53F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +29,12 @@ Global
 		{01D533E2-F29A-4A7A-8904-6D75ECB5BBF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01D533E2-F29A-4A7A-8904-6D75ECB5BBF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01D533E2-F29A-4A7A-8904-6D75ECB5BBF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{696D6A79-908B-4A08-A097-70FAABDF53F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{696D6A79-908B-4A08-A097-70FAABDF53F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{696D6A79-908B-4A08-A097-70FAABDF53F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{696D6A79-908B-4A08-A097-70FAABDF53F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

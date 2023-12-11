@@ -1,6 +1,5 @@
-using meetlocal_backendAPI.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using backend.application.Models;
 
 namespace meetlocal_backendAPI.Controllers;
 
@@ -16,8 +15,6 @@ public class LocationController : ControllerBase
             return BadRequest("Invalid data");
         }
 
-        // Your data validation logic here
-
         try
         {
             Console.WriteLine(locationModel.Longtitude);
@@ -27,7 +24,6 @@ public class LocationController : ControllerBase
         }
         catch (Exception ex)
         {
-            // Log the error
             Console.WriteLine(ex);
             return StatusCode(StatusCodes.Status500InternalServerError);
         }

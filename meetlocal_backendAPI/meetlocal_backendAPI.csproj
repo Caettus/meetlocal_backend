@@ -33,6 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\backend.application\backend.application.csproj" />
       <ProjectReference Include="..\MLDAL\MLDAL.csproj" />
     </ItemGroup>
 
