@@ -6,6 +6,8 @@ using System.IO;
 using MLDAL; // Add this line to import the AppDbContext class
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using backend.application.Repositories;
+using backend.application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,9 @@ var configuration = new ConfigurationBuilder()
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<gatheringService, gatheringService>();
+builder.Services.AddScoped<gatheringRepository, gatheringRepository>();
 
 // Configure CORS
 builder.Services.AddCors(options =>

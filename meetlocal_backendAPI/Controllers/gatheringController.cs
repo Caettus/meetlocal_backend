@@ -8,7 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MLDAL;
 using MLDAL.Models;
-
+using backend.application.Models;
+using backend.application.Mappers;
+using backend.application.Repositories;
+using backend.application.Services;
 
 
 [Route("api/[controller]")]
@@ -16,10 +19,13 @@ using MLDAL.Models;
 public class gatheringController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly gatheringService _gatheringService;
+    
 
-    public gatheringController(AppDbContext context)
+    public gatheringController(AppDbContext context, gatheringService gatheringService)
     {
         _context = context;
+        _gatheringService = gatheringService;
     }
 
     // GET: api/gathering
@@ -54,25 +60,16 @@ public class gatheringController : ControllerBase
 
     // POST: api/gathering
     [HttpPost]
-    public async Task<ActionResult<gathering>> PostGathering(gathering model)
+    public async Task<ActionResult<gathering>> PostGathering(gatheringModel model)
     {
         try
         {
-            // Combine date and time and parse to DateTime
-            model.GatheringDateTime = DateTime.SpecifyKind(
-                DateTime.ParseExact($"{model.GatheringDate} {model.GatheringTime}", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture),
-                DateTimeKind.Utc
-            );
-
-            _context.Gatherings.Add(model);
-            await _context.SaveChangesAsync();
+            var result = await _gatheringService.AddGathering(model);
 
             return CreatedAtAction("GetGathering", new { id = model.GatheringId }, model);
         }
         catch (Exception ex)
         {
-
-            // Return an error response
             return StatusCode(500, $"Internal Server Error: {ex.Message}");
         }
     }
