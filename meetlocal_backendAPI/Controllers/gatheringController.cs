@@ -48,15 +48,22 @@ public class gatheringController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<gathering>> GetGathering(int id)
     {
-        var gathering = await _context.Gatherings.FindAsync(id);
-
-        if (gathering == null)
+        try
         {
-            return NotFound();
+            var gathering = await _gatheringService.GetGathering(id);
+            return Ok(gathering);
         }
+        catch (Exception ex)
+        {
+            if (ex.Message == "Gathering not found")
+            {
+                return NotFound();
+            }
 
-        return gathering;
+            return StatusCode(500, "An error occurred while processing your request.");
+        }
     }
+
 
     // POST: api/gathering
     [HttpPost]

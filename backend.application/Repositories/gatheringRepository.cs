@@ -26,4 +26,16 @@ public class gatheringRepository
         await _context.SaveChangesAsync();
         return gatheringModel;
     }
+
+    public async Task<gatheringModel> GetGathering(int id)
+    {
+        var gathering = (gatheringMapper.toLogicModel(await _context.Gatherings.FindAsync(id)));
+
+        if (gathering == null)
+        {
+            throw new Exception("Gathering not found");
+        }
+
+        return gathering;
+    }
 }

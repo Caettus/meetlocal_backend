@@ -19,5 +19,9 @@ public class gatheringService
         return await _gatheringRepository.AddGathering(gatheringModel);
     }
 
+    public async Task<gatheringModel> GetGathering(int id)
+    {
+        return await _gatheringRepository.GetGathering(id);
+    }
     
 }
