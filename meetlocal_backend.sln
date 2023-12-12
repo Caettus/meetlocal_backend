@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "meetlocal_backend", "meetlo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLDAL", "MLDAL\MLDAL.csproj", "{01D533E2-F29A-4A7A-8904-6D75ECB5BBF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend.application", "backend.application\backend.application.csproj", "{696D6A79-908B-4A08-A097-70FAABDF53F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "backend.application", "backend.application\backend.application.csproj", "{696D6A79-908B-4A08-A097-70FAABDF53F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.IntegrationTests", "Backend.IntegrationTests\Backend.IntegrationTests.csproj", "{16E52E0C-481C-40F1-B8E1-4B978874B26B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{696D6A79-908B-4A08-A097-70FAABDF53F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{696D6A79-908B-4A08-A097-70FAABDF53F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{696D6A79-908B-4A08-A097-70FAABDF53F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E52E0C-481C-40F1-B8E1-4B978874B26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E52E0C-481C-40F1-B8E1-4B978874B26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E52E0C-481C-40F1-B8E1-4B978874B26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E52E0C-481C-40F1-B8E1-4B978874B26B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {352627BC-392F-451A-B4A9-F65151C6579F}
 	EndGlobalSection
 EndGlobal
