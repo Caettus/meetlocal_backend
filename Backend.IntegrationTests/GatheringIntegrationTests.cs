@@ -71,5 +71,57 @@ namespace Backend.IntegrationTests
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
 
         }
+        
+        [Test]
+        public async Task AddGathering_InvalidInput_ReturnsBadRequest()
+        {
+            // Arrange
+            var gathering = new gatheringModel
+            {
+                GatheringDate = "2021-01-01",
+                GatheringTime = "12:00",
+                GatheringLocation = "Test Location",
+                GatheringDescription = "Test Description",
+                GatheringOrganiser = "Test Organiser",
+                GatheringCategory = "Test Category"
+            };
+
+            // Act
+            var response = await _client.PostAsJsonAsync("/api/gathering", gathering);
+
+            // Assert
+            Assert.That(response, Is.Not.Null);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+
+        }
+        
+        [Test]
+        public async Task GetGathering_ValidInput_ReturnsOk()
+        {
+            // Arrange
+            int id = 1;
+
+            // Act
+            var response = await _client.GetAsync($"/api/gathering/{id}");
+
+            // Assert
+            Assert.That(response, Is.Not.Null);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
+        }
+        
+        [Test]
+        public async Task GetGathering_InvalidInput_ReturnsNotFound()
+        {
+            // Arrange
+            int id = 29;
+
+            // Act
+            var response = await _client.GetAsync($"/api/gathering/{id}");
+
+            // Assert
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+            
+        }
     }
 }

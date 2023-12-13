@@ -4,8 +4,12 @@ using MLDAL.Models;
 
 public class gatheringMapper
 {
-    public static gatheringModel toLogicModel(gathering gathering)
+    public static gatheringModel? toLogicModel(gathering? gathering)
     {
+        if (gathering == null)
+        {
+            return null;
+        }
         return new gatheringModel
         {
             GatheringId = gathering.GatheringId,
@@ -18,8 +22,12 @@ public class gatheringMapper
         };
     }
     
-    public static gathering toDataModel(gatheringModel gatheringModel)
+    public static gathering? toDataModel(gatheringModel? gatheringModel)
     {
+        if (gatheringModel == null)
+        {
+            return null;
+        }
         return new gathering
         {
             GatheringId = gatheringModel.GatheringId,

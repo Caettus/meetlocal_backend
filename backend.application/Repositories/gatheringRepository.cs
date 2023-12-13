@@ -29,7 +29,7 @@ public class gatheringRepository
 
     public async Task<gatheringModel> GetGathering(int id)
     {
-        var gathering = (gatheringMapper.toLogicModel(await _context.Gatherings.FindAsync(id)));
+        var gathering = gatheringMapper.toLogicModel(await _context.Gatherings.FindAsync(id));
 
         if (gathering == null)
         {
