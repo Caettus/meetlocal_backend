@@ -1,6 +1,7 @@
 using System.Globalization;
 using backend.application.Mappers;
 using backend.application.Models;
+using Microsoft.EntityFrameworkCore;
 using MLDAL;
 using MLDAL.Models;
 
@@ -37,5 +38,29 @@ public class gatheringRepository
         }
 
         return gathering;
+    }
+    
+    public async Task<List<gatheringModel>> GetGatherings(string search = "")
+    {
+        var gatherings = _context.Gatherings.AsQueryable();
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            gatherings = gatherings.Where(g => g.GatheringName.Contains(search) || g.GatheringDescription.Contains(search));
+        }
+
+        return await gatherings.Select(g => gatheringMapper.toLogicModel(g)).ToListAsync();
+    }
+    
+    public async Task<gatheringModel> DeleteGathering(int id)
+    {
+        var gathering = await _context.Gatherings.FindAsync(id);
+        if (gathering == null)
+        {
+            throw new Exception("Gathering not found");
+        }
+        _context.Gatherings.Remove(gathering);
+        await _context.SaveChangesAsync();
+        return gatheringMapper.toLogicModel(gathering);
     }
 }

@@ -24,4 +24,15 @@ public class gatheringService
         return await _gatheringRepository.GetGathering(id);
     }
     
+    public async Task<List<gatheringModel>> GetGatherings(string search = "")
+    {
+        return await _gatheringRepository.GetGatherings(search);
+    }
+
+    public async Task<gatheringModel> DeleteGathering(int id)
+    {
+        return await _gatheringRepository.DeleteGathering(id);
+    }
+    
+    
 }

@@ -32,14 +32,15 @@ public class gatheringController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<gathering>>> GetGatherings(string search = "")
     {
-        var gatherings = _context.Gatherings.AsQueryable();
-
-        if (!string.IsNullOrEmpty(search))
+        try
         {
-            gatherings = gatherings.Where(g => g.GatheringName.Contains(search) || g.GatheringDescription.Contains(search));
+            var gatherings = await _gatheringService.GetGatherings(search);
+            return Ok(gatherings);
         }
-
-        return await gatherings.ToListAsync();
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal Server Error: {ex.Message}");
+        }
     }
 
 
@@ -83,50 +84,25 @@ public class gatheringController : ControllerBase
 
 
 
-    // PUT: api/gathering/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutGathering(int id, gathering gathering)
-    {
-        if (id != gathering.GatheringId)
-        {
-            return BadRequest();
-        }
-
-        _context.Entry(gathering).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!GatheringExists(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-
-        return NoContent();
-    }
-
     // DELETE: api/gathering/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteGathering(int id)
     {
-        var gathering = await _context.Gatherings.FindAsync(id);
-        if (gathering == null)
+        try
         {
-            return NotFound();
+            var result = await _gatheringService.DeleteGathering(id);
+            return Ok(result);
         }
+        catch (Exception e)
+        {
+            if (e.Message == "Gathering not found")
+            {
+                return NotFound();
+            }
 
-        _context.Gatherings.Remove(gathering);
-        await _context.SaveChangesAsync();
-
-        return NoContent();
+            return StatusCode(500, "An error occurred while processing your request.");
+        }
+    
     }
 
     private bool GatheringExists(int id)
