@@ -28,13 +28,19 @@ public class gatheringController : ControllerBase
         _gatheringService = gatheringService;
     }
 
-    // GET: api/gathering
     [HttpGet]
     public async Task<ActionResult<IEnumerable<gathering>>> GetGatherings(string search = "")
     {
         try
         {
             var gatherings = await _gatheringService.GetGatherings(search);
+
+            // Check if no gatherings are found and return 404 status code
+            if (gatherings.Count == 0)
+            {
+                return NotFound();
+            }
+
             return Ok(gatherings);
         }
         catch (Exception ex)
@@ -42,6 +48,7 @@ public class gatheringController : ControllerBase
             return StatusCode(500, $"Internal Server Error: {ex.Message}");
         }
     }
+
 
 
 

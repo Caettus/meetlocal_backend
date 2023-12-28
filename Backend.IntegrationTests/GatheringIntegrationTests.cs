@@ -114,10 +114,68 @@ namespace Backend.IntegrationTests
         public async Task GetGathering_InvalidInput_ReturnsNotFound()
         {
             // Arrange
-            int id = 29;
+            int id = 9999;
 
             // Act
             var response = await _client.GetAsync($"/api/gathering/{id}");
+
+            // Assert
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+            
+        }
+        
+        [Test]
+        public async Task GetGatherings_ValidInput_ReturnsOk()
+        {
+            // Arrange
+            string search = "Test";
+
+            // Act
+            var response = await _client.GetAsync($"/api/gathering?search={search}");
+
+            // Assert
+            Assert.That(response, Is.Not.Null);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
+        }
+        
+        [Test]
+        public async Task GetGatherings_InvalidInput_ReturnsNotFound()
+        {
+            // Arrange
+            string search = "ditiseenrandomzoektermdiegeengatheringzalvinden";
+
+            // Act
+            var response = await _client.GetAsync($"/api/gathering?search={search}");
+
+            // Assert
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+        }
+
+        
+        [Test]
+        public async Task DeleteGathering_ValidInput_ReturnsOk()
+        {
+            // Arrange
+            int id = 26;
+
+            // Act
+            var response = await _client.DeleteAsync($"/api/gathering/{id}");
+
+            // Assert
+            Assert.That(response, Is.Not.Null);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
+        }
+        
+        [Test]
+        public async Task DeleteGathering_InvalidInput_ReturnsNotFound()
+        {
+            // Arrange
+            int id = 9999;
+
+            // Act
+            var response = await _client.DeleteAsync($"/api/gathering/{id}");
 
             // Assert
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));

@@ -48,9 +48,16 @@ public class gatheringRepository
         {
             gatherings = gatherings.Where(g => g.GatheringName.Contains(search) || g.GatheringDescription.Contains(search));
         }
+        else
+        {
+            throw new Exception("No gatherings found");
+            
+        }
 
         return await gatherings.Select(g => gatheringMapper.toLogicModel(g)).ToListAsync();
     }
+
+
     
     public async Task<gatheringModel> DeleteGathering(int id)
     {
