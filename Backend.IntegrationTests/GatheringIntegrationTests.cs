@@ -7,6 +7,8 @@ using backend.application.Models;
 using NUnit.Framework;
 using System.Net.Http.Json;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Backend.IntegrationTests
 {

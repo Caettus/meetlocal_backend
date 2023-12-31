@@ -35,7 +35,7 @@ public class gatheringController : ControllerBase
         {
             var gatherings = await _gatheringService.GetGatherings(search);
 
-            // Check if no gatherings are found and return 404 status code
+            
             if (gatherings.Count == 0)
             {
                 return NotFound();
