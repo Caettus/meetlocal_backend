@@ -34,7 +34,6 @@ public class gatheringController : ControllerBase
         try
         {
             var gatherings = await _gatheringService.GetGatherings(search);
-
             
             if (gatherings.Count == 0)
             {
